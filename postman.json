@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "8f88b71c-0798-4f6e-95ce-870d07d6f446",
+		"name": "fasms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7557491"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if (pm.response.status == \"OK\" && pm.response.text().length > 0) {",
+							"    pm.collectionVariables.set(\"jwt\", pm.response.text())",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"username\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new applicant",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicants\": [\n        {\n            \"id\": \"01913b7a-4493-74b2-93f8-e684c4ca935c\",\n            \"name\": \"James\",\n            \"employment_status\": \"unemployed\",\n            \"sex\": \"male\",\n            \"date_of_birth\": \"1990-07-01\",\n            \"household\": []\n        },\n        {\n            \"id\": \"01913b80-2c04-7f9d-86a4-497ef68cb3a0\",\n            \"name\": \"Mary\",\n            \"employment_status\": \"unemployed\",\n            \"sex\": \"female\",\n            \"date_of_birth\": \"1984-10-06\",\n            \"household\": [\n                {\n                    \"id\": \"01913b88-1d4d-7152-a7ce-75796a2e8ecf\",\n                    \"name\": \"Gwen\",\n                    \"employment_status\": \"unemployed\",\n                    \"sex\": \"female\",\n                    \"date_of_birth\": \"2016-02-01\",\n                    \"relation\": \"daughter\"\n                },\n                {\n                    \"id\": \"01913b88-65c6-7255-820f-9c4dd1e5ce79\",\n                    \"name\": \"Jayden\",\n                    \"employment_status\": \"unemployed\",\n                    \"sex\": \"male\",\n                    \"date_of_birth\": \"2018-03-15\",\n                    \"relation\": \"son\"\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/applicants",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"applicants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all applicants",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/applicants",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"applicants"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all schemes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/schemes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"schemes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all schemes that an applicant is eligible to apply for",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/schemes/eligible?applicant=01913b80-2c04-7f9d-86a4-497ef68cb3a0",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"schemes",
+						"eligible"
+					],
+					"query": [
+						{
+							"key": "applicant",
+							"value": "01913b80-2c04-7f9d-86a4-497ef68cb3a0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new application",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"applicantId\": \"01913b80-2c04-7f9d-86a4-497ef68cb3a0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/applications",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all applications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/applications",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"applications"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJuYW1lIiwiaWF0IjoxNzI0NTE0NjAwLCJleHAiOjE3NTYwNTA2MDB9.pzOs2v7FHPpdHZnZLbGC6FMZT1F4AdmKpHFkqHM0n4g",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "localhost:8080",
+			"type": "string"
+		}
+	]
+}

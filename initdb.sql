@@ -1,0 +1,1 @@
+CREATE DATABASE fasms_db
