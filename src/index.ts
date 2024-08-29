@@ -26,8 +26,15 @@ app.use("/", checkCors, authenticate, applicationsRouter)
 app.use("/", checkCors, authenticate, schemesRouter)
 
 // TODO: Perform migration to prevent data loss
-sequelize.sync({ force: true }).then(() => {
+sequelize
+  .query("SET FOREIGN_KEY_CHECKS = 0")
+  .then(() => {
+    return sequelize.sync({ force: true }).then(() => {
   seedDatabaseWithTestData()
+})
+  })
+  .then(() => {
+    return sequelize.query("SET FOREIGN_KEY_CHECKS = 1")
 })
 
 const PORT = process.env.NODE_DOCKER_PORT
