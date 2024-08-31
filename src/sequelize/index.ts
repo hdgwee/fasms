@@ -4,7 +4,7 @@ import applicant from "./models/applicant.model"
 import application from "./models/application.model"
 import benefit from "./models/benefit.model"
 import criteria from "./models/criteria.model"
-import scheme from "./models/scheme.model"
+import scheme from "./models/scheme.models"
 import user from "./models/user.model"
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -19,4 +19,4 @@ for (const modelDefiner of modelDefiners) {
   modelDefiner(sequelize)
 }
 
-export default sequelize
+export { sequelize }

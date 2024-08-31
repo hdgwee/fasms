@@ -1,4 +1,4 @@
-import sequelize from "../sequelize"
+import { sequelize } from "../sequelize"
 import jwt from "jsonwebtoken"
 import UserSequelizer from "../sequelize/models/user.model"
 

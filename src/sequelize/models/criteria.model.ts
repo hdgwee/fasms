@@ -1,9 +1,18 @@
-import { Sequelize } from "sequelize"
+import { Sequelize, Model, Optional } from "sequelize"
 import DataTypes from "sequelize"
-import { CriteriaInstance } from "../../models/criteria"
+import { Criteria } from "../../models/criteria"
+
+export interface CriteriaCreationAttributes extends Optional<Criteria, "id"> {}
+
+export interface CriteriaDao
+  extends Model<Criteria, CriteriaCreationAttributes>,
+    Criteria {
+  createdAt?: Date
+  updatedAt?: Date
+}
 
 export default (sequelize: Sequelize) => {
-  const model = sequelize.define<CriteriaInstance>(
+  const model = sequelize.define<CriteriaDao>(
     "criteria",
     {
       id: {
@@ -11,10 +20,6 @@ export default (sequelize: Sequelize) => {
         primaryKey: true,
         type: DataTypes.STRING,
         unique: true,
-      },
-      schemeId: {
-        allowNull: false,
-        type: DataTypes.STRING,
       },
       name: {
         allowNull: false,

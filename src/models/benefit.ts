@@ -1,17 +1,11 @@
-import { Model, Optional } from "sequelize"
-
-export interface Benefit {
+export class Benefit {
   id: string
-  schemeId: string
   name: string
   amount: number
-}
 
-export interface BenefitCreationAttributes extends Optional<Benefit, "id"> {}
-
-export interface BenefitInstance
-  extends Model<Benefit, BenefitCreationAttributes>,
-    Benefit {
-  createdAt?: Date
-  updatedAt?: Date
+  constructor(id: string, name: string, amount: number) {
+    this.id = id
+    this.name = name
+    this.amount = amount
+  }
 }

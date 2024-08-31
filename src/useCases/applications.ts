@@ -1,4 +1,4 @@
-import sequelize from "../sequelize"
+import { sequelize } from "../sequelize"
 import ApplicationSequelizer from "../sequelize/models/application.model"
 import { getAllEligible } from "./scheme"
 import { v4 as uuidv4 } from "uuid"
@@ -10,7 +10,7 @@ export async function create(applicantId: string) {
     const schemeId = eligibleScheme.id
     const existingApplication = await get(applicantId, schemeId)
 
-    if (existingApplication == null) {
+    if (existingApplication === null) {
       await ApplicationSequelizer(sequelize).create({
         id: uuidv4(),
         applicantId: applicantId,
