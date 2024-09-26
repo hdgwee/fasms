@@ -1,16 +1,18 @@
 import { Applicant } from "../../models/applicant"
 import { ApplicantDao } from "../../sequelize/models/applicant.model"
 
-export function mapFromDaoList(applicantDaoList: ApplicantDao[]): Applicant[] {
-  const applicantList: Applicant[] = []
+export function mapFromDaoArray(
+  applicantDaoArray: ApplicantDao[],
+): Applicant[] {
+  const applicantArray: Applicant[] = []
 
-  for (const applicantDao of applicantDaoList) {
+  for (const applicantDao of applicantDaoArray) {
     const applicant = mapFromDao(applicantDao)
 
-    applicantList.push(applicant)
+    applicantArray.push(applicant)
   }
 
-  return applicantList
+  return applicantArray
 }
 
 export function mapFromDao(applicantDao: ApplicantDao): Applicant {

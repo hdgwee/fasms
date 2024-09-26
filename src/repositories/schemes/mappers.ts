@@ -6,11 +6,11 @@ import { CriteriaDao } from "../../sequelize/models/criteria.model"
 import { BenefitDao } from "../../sequelize/models/benefit.model"
 
 export function mapFromDao(
-  detailedSchemeDaoList: DetailedSchemeDao[],
+  detailedSchemeDaoArray: DetailedSchemeDao[],
 ): Scheme[] {
   const schemes: Scheme[] = []
 
-  for (const detailedSchemeDao of detailedSchemeDaoList) {
+  for (const detailedSchemeDao of detailedSchemeDaoArray) {
     const scheme = new Scheme(
       detailedSchemeDao.id,
       detailedSchemeDao.name,
@@ -23,26 +23,26 @@ export function mapFromDao(
   return schemes
 }
 
-function mapFromCriteriaDao(criteriaDaoList: CriteriaDao[]): Criteria[] {
-  const criteriaList: Criteria[] = []
+function mapFromCriteriaDao(criteriaDaoArray: CriteriaDao[]): Criteria[] {
+  const criteriaArray: Criteria[] = []
 
-  for (const criteriaDao of criteriaDaoList) {
+  for (const criteriaDao of criteriaDaoArray) {
     const critieria = new Criteria(
       criteriaDao.id,
       criteriaDao.name,
       criteriaDao.value,
       criteriaDao.parentId,
     )
-    criteriaList.push(critieria)
+    criteriaArray.push(critieria)
   }
 
-  return criteriaList
+  return criteriaArray
 }
 
-function mapFromBenefitDao(benefitDaoList: BenefitDao[]): Benefit[] {
+function mapFromBenefitDao(benefitDaoArray: BenefitDao[]): Benefit[] {
   const benefits: Benefit[] = []
 
-  for (const benefitDao of benefitDaoList) {
+  for (const benefitDao of benefitDaoArray) {
     const benefit = new Benefit(
       benefitDao.id,
       benefitDao.name,

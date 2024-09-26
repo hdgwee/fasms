@@ -1,6 +1,6 @@
 import { sequelize } from "../../sequelize"
 import { Applicant } from "../../models/applicant"
-import { mapFromDao, mapFromDaoList } from "./mappers"
+import { mapFromDao, mapFromDaoArray } from "./mappers"
 import { ApplicantDao } from "../../sequelize/models/applicant.model"
 
 export async function createApplicant(applicant: Applicant) {
@@ -32,7 +32,7 @@ export async function getApplicant(id: string) {
 }
 
 export async function getAllApplicants() {
-  const applicants = await sequelize.models.applicant.findAll()
+  const applicantDaoArray = await sequelize.models.applicant.findAll()
 
-  return mapFromDaoList(applicants as ApplicantDao[])
+  return mapFromDaoArray(applicantDaoArray as ApplicantDao[])
 }
