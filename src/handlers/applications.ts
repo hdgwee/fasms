@@ -2,7 +2,7 @@ import { Request, Response } from "express-serve-static-core"
 import { get as getApplicant } from "../useCases/applicants"
 import {
   create as createApplication,
-  getAll as getAllApplication,
+  getAll as getAllApplications,
 } from "../useCases/applications"
 import { get as getSchemes } from "../useCases/scheme"
 import { mapApplicantDto } from "../dtos/applicants"
@@ -25,7 +25,7 @@ export function create(
 }
 
 export function getAll(_: Request, response: Response) {
-  getAllApplication().then((applications) => {
+  getAllApplications().then((applications) => {
     if (applications.length === 0) {
       response.send({ application: {} })
     } else {
