@@ -1,4 +1,4 @@
-import { DetailedSchemeDao } from "../../sequelize/models/scheme.models"
+import { DetailedSchemeDao } from "../../sequelize/models/scheme.model"
 import { Scheme } from "../../models/scheme"
 import { Criteria } from "../../models/criteria"
 import { Benefit } from "../../models/benefit"

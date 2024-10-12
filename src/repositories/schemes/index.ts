@@ -1,5 +1,5 @@
 import { sequelize } from "../../sequelize"
-import { DetailedSchemeDao } from "../../sequelize/models/scheme.models"
+import { DetailedSchemeDao } from "../../sequelize/models/scheme.model"
 import { mapFromDao } from "./mappers"
 
 export async function getSchemes(ids: string[]) {
