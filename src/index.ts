@@ -10,12 +10,6 @@ import usersRouter from "./routes/users"
 import applicantsRouter from "./routes/applicants"
 import applicationsRouter from "./routes/applications"
 import schemesRouter from "./routes/schemes"
-import {
-  ErrorRequestHandler,
-  Request,
-  Response,
-  NextFunction,
-} from "express-serve-static-core"
 import { sequelize } from "./sequelize"
 import { seed } from "./tests/databaseSeeder"
 
@@ -34,16 +28,6 @@ app.use("/", checkCors, usersRouter)
 app.use("/", checkCors, authenticate, applicantsRouter)
 app.use("/", checkCors, authenticate, applicationsRouter)
 app.use("/", checkCors, authenticate, schemesRouter)
-
-app.use(function (
-  err: ErrorRequestHandler,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) {
-  if (err) console.log(err)
-  next()
-})
 
 seed(sequelize)
 
