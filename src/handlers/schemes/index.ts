@@ -2,8 +2,8 @@ import { Request, Response } from "express-serve-static-core"
 import {
   getAll as getAllSchemes,
   getAllEligible as getAllEligibleSchemes,
-} from "../useCases/scheme"
-import { mapSchemeDto } from "../dtos/schemes"
+} from "../../useCases/scheme"
+import { mapSchemeDto } from "./mappers"
 
 export function getAll(request: Request, response: Response) {
   getAllSchemes().then((allSchemes) => {

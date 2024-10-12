@@ -1,5 +1,5 @@
 import { ApplicantDto, SubApplicantDto } from "./dto"
-import { Applicant } from "../../models/applicant"
+import { Applicant } from "../../../models/applicant"
 
 export function mapApplicant(applicantDto: ApplicantDto): Applicant {
   return {

@@ -1,12 +1,11 @@
 import { Request, Response } from "express-serve-static-core"
-import { get as getApplicant } from "../useCases/applicants"
+import { get as getApplicant } from "../../useCases/applicants"
 import {
   create as createApplication,
   getAll as getAllApplications,
-} from "../useCases/applications"
-import { get as getSchemes } from "../useCases/scheme"
-import { mapApplicantDto } from "../dtos/applicants"
-import { mapSchemeDto } from "../dtos/schemes"
+} from "../../useCases/applications"
+import { get as getSchemes } from "../../useCases/scheme"
+import { mapApplicantDto, mapSchemeDto } from "./mappers"
 
 export function create(
   request: Request<{}, {}, { applicantId: string }, {}>,

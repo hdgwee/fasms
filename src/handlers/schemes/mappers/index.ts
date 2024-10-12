@@ -1,6 +1,6 @@
-import { Benefit } from "../../models/benefit"
-import { Criteria } from "../../models/criteria"
-import { Scheme } from "../../models/scheme"
+import { Benefit } from "../../../models/benefit"
+import { Criteria } from "../../../models/criteria"
+import { Scheme } from "../../../models/scheme"
 import { BenefitDto, SchemeDto } from "./dtos"
 
 export function mapSchemeDto(schemes: Scheme[]): SchemeDto[] {
