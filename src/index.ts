@@ -1,6 +1,8 @@
 import dotenv from "dotenv"
 import express from "express"
 import bodyParser from "body-parser"
+import { log as logRequest } from "./middlewares/requestLogger"
+import { log as logResponse } from "./middlewares/responseLogger"
 import corsMiddlewareOptions from "./middlewares/cors"
 import { authenticate } from "./middlewares/authentication"
 import cors from "cors"
@@ -23,6 +25,8 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json({ limit: "50mb" }))
+app.use(logRequest)
+app.use(logResponse)
 
 const checkCors = cors(corsMiddlewareOptions)
 
