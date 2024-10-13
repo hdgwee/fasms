@@ -19,4 +19,4 @@ for (const modelDefiner of modelDefiners) {
   modelDefiner(sequelize)
 }
 
-export default sequelize
+export { sequelize }

@@ -1,21 +1,14 @@
 import { Request, Response } from "express-serve-static-core"
-import {
-  CreateDto,
-  ApplicantDto,
-  SubApplicantDto,
-} from "../dtos/applicants/dto"
+import { ApplicantDto, SubApplicantDto } from "./mappers/dto"
+import { CreateRequest } from "./models"
 import {
   create as createApplicant,
   getAll as getAllApplicants,
-} from "../useCases/applicants"
-import {
-  mapApplicant,
-  mapApplicantDtos,
-  mapSubApplicant,
-} from "../dtos/applicants"
+} from "../../useCases/applicants"
+import { mapApplicant, mapApplicantDtos, mapSubApplicant } from "./mappers"
 
 export function create(
-  request: Request<{}, {}, CreateDto, {}>,
+  request: Request<{}, {}, CreateRequest, {}>,
   response: Response,
 ) {
   const applicants = request.body.applicants

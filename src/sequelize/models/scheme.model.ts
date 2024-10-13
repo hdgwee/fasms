@@ -1,9 +1,28 @@
-import { Sequelize } from "sequelize"
-import DataTypes from "sequelize"
-import { SchemeDbInstance } from "../../models/scheme"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
+import { CriteriaDao } from "./criteria.model"
+import { BenefitDao } from "./benefit.model"
+
+interface Scheme {
+  id: string
+  name: string
+}
+
+export interface SchemeDbCreationAttributes extends Optional<Scheme, "id"> {}
+
+export interface SchemeDao
+  extends Model<Scheme, SchemeDbCreationAttributes>,
+    Scheme {
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+export interface DetailedSchemeDao extends SchemeDao {
+  criteria: CriteriaDao[]
+  benefits: BenefitDao[]
+}
 
 export default (sequelize: Sequelize) => {
-  const model = sequelize.define<SchemeDbInstance>(
+  const model = sequelize.define<SchemeDao>(
     "scheme",
     {
       id: {
@@ -21,6 +40,16 @@ export default (sequelize: Sequelize) => {
       tableName: "schemes",
     },
   )
+
+  model.belongsToMany(sequelize.models.benefit, {
+    as: "benefits",
+    through: "scheme_benefit",
+  })
+
+  model.belongsToMany(sequelize.models.criteria, {
+    as: "criteria",
+    through: "scheme_criteria",
+  })
 
   return model
 }

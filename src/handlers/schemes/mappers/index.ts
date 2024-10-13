@@ -1,12 +1,12 @@
-import { Benefit } from "../../models/benefit"
-import { Criteria } from "../../models/criteria"
-import { Scheme } from "../../models/scheme"
+import { Benefit } from "../../../models/benefit"
+import { Criteria } from "../../../models/criteria"
+import { Scheme } from "../../../models/scheme"
 import { BenefitDto, SchemeDto } from "./dtos"
 
 export function mapSchemeDto(schemes: Scheme[]): SchemeDto[] {
   const schemeDtos: SchemeDto[] = []
 
-  schemes.map((scheme) => {
+  schemes.forEach((scheme) => {
     schemeDtos.push({
       id: scheme.id,
       name: scheme.name,
@@ -52,7 +52,7 @@ function mapCriteriaDto(criteria: Criteria[]): unknown[] {
 function mapBenefitsDto(benefits: Benefit[]): BenefitDto[] {
   const benefitDtos: BenefitDto[] = []
 
-  benefits.map((benefit) => {
+  benefits.forEach((benefit) => {
     benefitDtos.push({
       id: benefit.id,
       name: benefit.name,

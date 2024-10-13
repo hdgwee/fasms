@@ -1,9 +1,17 @@
-import { Sequelize } from "sequelize"
-import DataTypes from "sequelize"
-import { ApplicantInstance } from "../../models/applicant"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
+import { Applicant } from "../../models/applicant"
+
+interface ApplicantCreationAttributes extends Optional<Applicant, "id"> {}
+
+export interface ApplicantDao
+  extends Model<Applicant, ApplicantCreationAttributes>,
+    Applicant {
+  createdAt?: Date
+  updatedAt?: Date
+}
 
 export default (sequelize: Sequelize) => {
-  const model = sequelize.define<ApplicantInstance>(
+  const model = sequelize.define<ApplicantDao>(
     "applicant",
     {
       id: {

@@ -1,9 +1,17 @@
-import { Sequelize } from "sequelize"
-import DataTypes from "sequelize"
-import { BenefitInstance } from "../../models/benefit"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
+import { Benefit } from "../../models/benefit"
+
+export interface BenefitCreationAttributes extends Optional<Benefit, "id"> {}
+
+export interface BenefitDao
+  extends Model<Benefit, BenefitCreationAttributes>,
+    Benefit {
+  createdAt?: Date
+  updatedAt?: Date
+}
 
 export default (sequelize: Sequelize) => {
-  const model = sequelize.define<BenefitInstance>(
+  const model = sequelize.define<BenefitDao>(
     "benefit",
     {
       id: {
@@ -11,10 +19,6 @@ export default (sequelize: Sequelize) => {
         primaryKey: true,
         type: DataTypes.STRING,
         unique: true,
-      },
-      schemeId: {
-        allowNull: false,
-        type: DataTypes.STRING,
       },
       name: {
         allowNull: false,

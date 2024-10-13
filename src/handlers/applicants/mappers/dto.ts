@@ -47,7 +47,3 @@ export class SubApplicantDto {
     this.relation = relation
   }
 }
-
-export interface CreateDto {
-  applicants: ApplicantDto[]
-}

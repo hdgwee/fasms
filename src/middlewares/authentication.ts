@@ -7,9 +7,12 @@ export function authenticate(
   next: NextFunction,
 ) {
   const authHeader = request.headers["authorization"]
-  const token = authHeader && (authHeader as string).split(" ")[1]
+  if (!authHeader) {
+    return response.sendStatus(401)
+  }
 
-  if (token == null) {
+  const token = authHeader.split(" ")[1]
+  if (!token) {
     return response.sendStatus(401)
   }
 

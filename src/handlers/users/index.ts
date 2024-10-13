@@ -1,9 +1,9 @@
 import { Request, Response } from "express-serve-static-core"
-import { LoginDto } from "../dtos/login"
-import { login as loginUser } from "../useCases/user"
+import { LoginRequest } from "./models"
+import { login as loginUser } from "../../useCases/user"
 
 export async function login(
-  request: Request<{}, {}, LoginDto, {}>,
+  request: Request<{}, {}, LoginRequest, {}>,
   response: Response,
 ) {
   const username = request.body.username.toLowerCase()

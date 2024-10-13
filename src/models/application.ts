@@ -1,17 +1,11 @@
-import { Model, Optional } from "sequelize"
-
-export interface Application {
+export class Application {
   id: string
   applicantId: string
   schemeId: string
-}
 
-export interface ApplicationCreationAttributes
-  extends Optional<Application, "id"> {}
-
-export interface ApplicationInstance
-  extends Model<Application, ApplicationCreationAttributes>,
-    Application {
-  createdAt?: Date
-  updatedAt?: Date
+  constructor(id: string, applicantId: string, schemeId: string) {
+    this.id = id
+    this.applicantId = applicantId
+    this.schemeId = schemeId
+  }
 }

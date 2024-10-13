@@ -1,12 +1,11 @@
 import { Request, Response } from "express-serve-static-core"
-import { get as getApplicant } from "../useCases/applicants"
+import { get as getApplicant } from "../../useCases/applicants"
 import {
   create as createApplication,
-  getAll as getAllApplication,
-} from "../useCases/applications"
-import { get as getSchemes } from "../useCases/scheme"
-import { mapApplicantDto } from "../dtos/applicants"
-import { mapSchemeDto } from "../dtos/schemes"
+  getAll as getAllApplications,
+} from "../../useCases/applications"
+import { get as getSchemes } from "../../useCases/scheme"
+import { mapApplicantDto, mapSchemeDto } from "./mappers"
 
 export function create(
   request: Request<{}, {}, { applicantId: string }, {}>,
@@ -25,7 +24,7 @@ export function create(
 }
 
 export function getAll(_: Request, response: Response) {
-  getAllApplication().then((applications) => {
+  getAllApplications().then((applications) => {
     if (applications.length === 0) {
       response.send({ application: {} })
     } else {
@@ -43,7 +42,7 @@ export function getAll(_: Request, response: Response) {
           getSchemes(schemeIds).then((schemes) => {
             response.send({
               application: {
-                applicant: mapApplicantDto(applicant!),
+                applicant: mapApplicantDto(applicant),
                 schemes: mapSchemeDto(schemes),
               },
             })
