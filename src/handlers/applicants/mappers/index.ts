@@ -25,7 +25,7 @@ export function mapApplicantDto(applicant: Applicant): ApplicantDto {
     subApplicants.push(applicant)
   }
 
-  subApplicants.map((subApplicant) => {
+  subApplicants.forEach((subApplicant) => {
     if (subApplicant.underTheSameHouseholdOf !== "") {
       const subApplicantDto = mapSubApplicantOnlyDto(subApplicant)
       applicantDto.household.push(subApplicantDto)
@@ -39,7 +39,7 @@ export function mapApplicantDtos(applicants: Applicant[]): ApplicantDto[] {
   const applicantDtos: ApplicantDto[] = []
   const subApplicants: Applicant[] = []
 
-  applicants.map((applicant) => {
+  applicants.forEach((applicant) => {
     const isNotSubApplicant = applicant.relationship === ""
     if (isNotSubApplicant) {
       const applicantDto = mapApplicantOnlyDto(applicant)
@@ -50,11 +50,11 @@ export function mapApplicantDtos(applicants: Applicant[]): ApplicantDto[] {
     }
   })
 
-  subApplicants.map((subApplicant) => {
+  subApplicants.forEach((subApplicant) => {
     if (subApplicant.underTheSameHouseholdOf !== "") {
       const subApplicantDto = mapSubApplicantOnlyDto(subApplicant)
 
-      applicantDtos.map((mainApplicant) => {
+      applicantDtos.forEach((mainApplicant) => {
         if (mainApplicant.id === subApplicant.underTheSameHouseholdOf) {
           mainApplicant.household.push(subApplicantDto)
         }

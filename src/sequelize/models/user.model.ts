@@ -1,5 +1,4 @@
-import { Sequelize, Model, Optional } from "sequelize"
-import DataTypes from "sequelize"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
 import { User } from "../../models/user"
 
 export interface UserCreationAttributes extends Optional<User, "username"> {}

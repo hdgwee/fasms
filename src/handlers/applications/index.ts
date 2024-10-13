@@ -42,7 +42,7 @@ export function getAll(_: Request, response: Response) {
           getSchemes(schemeIds).then((schemes) => {
             response.send({
               application: {
-                applicant: mapApplicantDto(applicant!),
+                applicant: mapApplicantDto(applicant),
                 schemes: mapSchemeDto(schemes),
               },
             })

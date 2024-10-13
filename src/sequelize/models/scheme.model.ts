@@ -1,5 +1,4 @@
-import { Sequelize, Model, Optional } from "sequelize"
-import DataTypes from "sequelize"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
 import { CriteriaDao } from "./criteria.model"
 import { BenefitDao } from "./benefit.model"
 

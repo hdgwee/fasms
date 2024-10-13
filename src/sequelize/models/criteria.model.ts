@@ -1,5 +1,4 @@
-import { Sequelize, Model, Optional } from "sequelize"
-import DataTypes from "sequelize"
+import DataTypes, { Sequelize, Model, Optional } from "sequelize"
 import { Criteria } from "../../models/criteria"
 
 export interface CriteriaCreationAttributes extends Optional<Criteria, "id"> {}

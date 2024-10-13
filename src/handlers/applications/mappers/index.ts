@@ -16,7 +16,7 @@ export function mapApplicantDto(applicant: Applicant): ApplicantDto {
     subApplicants.push(applicant)
   }
 
-  subApplicants.map((subApplicant) => {
+  subApplicants.forEach((subApplicant) => {
     if (subApplicant.underTheSameHouseholdOf !== "") {
       const subApplicantDto = mapSubApplicantOnlyDto(subApplicant)
       applicantDto.household.push(subApplicantDto)
@@ -66,7 +66,7 @@ export function mapSubApplicant(
 export function mapSchemeDto(schemes: Scheme[]): SchemeDto[] {
   const schemeDtos: SchemeDto[] = []
 
-  schemes.map((scheme) => {
+  schemes.forEach((scheme) => {
     schemeDtos.push({
       id: scheme.id,
       name: scheme.name,
@@ -112,7 +112,7 @@ function mapCriteriaDto(criteria: Criteria[]): unknown[] {
 function mapBenefitsDto(benefits: Benefit[]): BenefitDto[] {
   const benefitDtos: BenefitDto[] = []
 
-  benefits.map((benefit) => {
+  benefits.forEach((benefit) => {
     benefitDtos.push({
       id: benefit.id,
       name: benefit.name,
